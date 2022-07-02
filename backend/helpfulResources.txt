@@ -1,0 +1,10 @@
+https://www.mongodb.com/developer/languages/python/flask-python-mongodb/
+https://www.geeksforgeeks.org/python-build-a-rest-api-using-flask/
+https://github.com/ishaanp9/baseball-wordle/blob/main/backend/server.py
+
+
+https://www.mongodb.com/blog/post/getting-started-with-python-and-mongodb
+https://www.w3schools.com/python/python_mongodb_insert.asp
+
+
+
