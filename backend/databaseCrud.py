@@ -45,5 +45,5 @@ class MongoAPI:
     #read all from certain collection
     def readQuery(self, myQuery):
         document = self.collection.find(myQuery)
-        print(myQuery)
+        # print(myQuery)
         return dumps(document)

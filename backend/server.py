@@ -65,6 +65,45 @@ def getSpecificPlayerInformation(playerName):
         return playerInformation_obj.getSpecificPlayerInformation()
 
        
+@app.route('/get-player-on-team/<teamName>', methods=['GET', 'POST'])
+def getPlayersForTeam(teamName):
+    if(request.method == 'GET'):
+        
+        # # we can define the database and the collection here
+        teamData = {
+            "database": databaseName,
+            "collection": mlbTeams,
+        }
+
+        # # we can also pass in data
+        myQuery = {"name" : teamName}
+        
+
+        # getId from MLB DataBase 
+        # get all players 
+
+        
+        mongo_obj = MongoAPI(teamData)
+        teamId = json.loads(mongo_obj.readQuery(myQuery))[0]['id']
+        # print(teamId)
+
+        getTeamPlayerData = {
+            "database": databaseName,
+            "collection": playerInformation,
+        }
+
+        getAllPlayersQuery = {
+            "currentTeam.id" : teamId
+        }
+
+        print(getAllPlayersQuery)
+
+        mongo_obj1 = MongoAPI(getTeamPlayerData)
+        players = json.loads(mongo_obj1.readQuery(getAllPlayersQuery))
+        print(players)
+
+        return "hello"
+
 
 
 # defines the port 8080 as to not intefere with port 5000 which mongo runs on
