@@ -65,6 +65,7 @@ def getSpecificPlayerInformation(playerName):
         return playerInformation_obj.getSpecificPlayerInformation()
 
        
+# Gets All General Player Information from a specific team
 @app.route('/get-player-on-team/<teamName>', methods=['GET', 'POST'])
 def getPlayersForTeam(teamName):
     if(request.method == 'GET'):
@@ -96,13 +97,22 @@ def getPlayersForTeam(teamName):
             "currentTeam.id" : teamId
         }
 
-        print(getAllPlayersQuery)
-
         mongo_obj1 = MongoAPI(getTeamPlayerData)
-        players = json.loads(mongo_obj1.readQuery(getAllPlayersQuery))
-        print(players)
+        queryFilter = {'id','fullName', 'primaryPosition.abbreviation', 'birthDate', 'currentAge', 'birthCountry', 'height', 'weight', 'batSide.description', 'pitchHand.description', 'currentTeam.id'}
+        json_itr = json.loads(mongo_obj1.readQueryWithFilter(getAllPlayersQuery, queryFilter))
+        # print(json_itr)
+        
+        playerObjArr = []
+        for index in range(len(json_itr)):
+        #     # playerObj = specificPlayerInformation(json.loads(mongo_obj1.readQuery(getAllPlayersQuery))[index]) 
+        #     # print(json_itr[index])
 
-        return "hello"
+            playerObj = specificPlayerInformation([json_itr[index]])
+            playerObjArr.append(playerObj.getSpecificPlayerInformationFromTeamName())
+        
+        # return "Hello"
+        return jsonify(playerObjArr)
+        
 
 
 

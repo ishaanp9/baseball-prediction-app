@@ -47,3 +47,9 @@ class MongoAPI:
         document = self.collection.find(myQuery)
         # print(myQuery)
         return dumps(document)
+
+    def readQueryWithFilter(self, myQuery, queryFilter):
+
+        document = self.collection.find(myQuery, queryFilter)
+        # print(myQuery)
+        return dumps(document)
