@@ -26,7 +26,7 @@ function App() {
             )
           )
         : null} */}
-      <PlayerComponent playerName={'Corey Seager'}/>
+      <PlayerComponent playerName={'George Kirby'}/>
     </div>
   );
 }

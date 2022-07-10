@@ -64,6 +64,34 @@ def getSpecificPlayerInformation(playerName):
         
         return playerInformation_obj.getSpecificPlayerInformation()
 
+# Gets player stats for each player
+@app.route('/get-player-stats/<playerName>', methods=['GET', 'POST'])
+def getPlayerStats(playerName):
+    if (request.method == 'GET'):
+
+        playerData = {
+            "database": databaseName,
+            "collection": playerStats,
+        }
+
+        id = statsapi.lookup_player(playerName)[0]["id"]
+        myQuery = {"id" : id}
+
+        mongo_obj = MongoAPI(playerData)
+        playerStatsObj = json.loads(mongo_obj.readQuery(myQuery))
+        requestedPlayerStat = None
+        position = playerStatsObj[0]["position"]
+        print(position)
+        for statObj in playerStatsObj[0]["stats"]:
+            if (position == 'P' and statObj["group"] == 'pitching'):
+                requestedPlayerStat = statObj["stats"]
+            elif(position != 'P' and statObj["group"] == 'hitting'):
+                requestedPlayerStat = statObj["stats"]
+
+    return jsonify(requestedPlayerStat)
+       
+
+
        
 # Gets All General Player Information from a specific team
 @app.route('/get-player-on-team/<teamName>', methods=['GET', 'POST'])
