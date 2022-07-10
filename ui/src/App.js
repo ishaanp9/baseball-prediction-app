@@ -1,4 +1,5 @@
 import './App.css';
+import { ButtonFilled } from './components/Button/Button';
 import PlayerComponent from './components/playerComponent';
 
 function App() {
@@ -26,7 +27,10 @@ function App() {
             )
           )
         : null} */}
-      <PlayerComponent playerName={'George Kirby'}/>
+      {/* <PlayerComponent playerName={'Luis Torrens'}/> */}
+      <ButtonFilled backgroundColor='white' type='button'>
+        Hello
+      </ButtonFilled>
     </div>
   );
 }
