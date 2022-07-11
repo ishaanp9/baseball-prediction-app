@@ -1,6 +1,5 @@
 import './App.css';
-import { ButtonFilled } from './components/Button/Button';
-import PlayerComponent from './components/playerComponent';
+import RouterHQ from './RouterHQ';
 
 function App() {
 
@@ -10,28 +9,31 @@ function App() {
   // const [teamPlayersName, setTeamPlayersName] = useState([]);
 
   return (
-    <div className="App">
-      {/* {playerInfo.length > 0
-        ? teamPlayers.map(
-            ({
-              name,
-              //teamPlayersName need a name
-            }) => (
-              <ul>
-                <li key={name.toLowerCase()}>
-                  <PlayerComponent
-                    name={name}
-                  />
-                </li>
-              </ul>
-            )
-          )
-        : null} */}
-      {/* <PlayerComponent playerName={'Luis Torrens'}/> */}
-      <ButtonFilled backgroundColor='white' type='button'>
-        Hello
-      </ButtonFilled>
-    </div>
+
+    <RouterHQ/>
+    // <div className="App">
+      
+    //   {/* {playerInfo.length > 0
+    //     ? teamPlayers.map(
+    //         ({
+    //           name,
+    //           //teamPlayersName need a name
+    //         }) => (
+    //           <ul>
+    //             <li key={name.toLowerCase()}>
+    //               <PlayerComponent
+    //                 name={name}
+    //               />
+    //             </li>
+    //           </ul>
+    //         )
+    //       )
+    //     : null} */}
+    //   {/* <PlayerComponent playerName={'Luis Torrens'}/> */}
+    //   {/* <ButtonFilled backgroundColor='white' type='button'>
+    //     Hello
+    //   </ButtonFilled> */}
+    // </div>
   );
 }
 
