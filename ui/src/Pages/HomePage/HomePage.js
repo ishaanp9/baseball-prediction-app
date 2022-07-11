@@ -1,4 +1,5 @@
 import React from 'react'
+import { HomePageContainer } from './HomePage.jsx'
 
 function HomePage() {
   return (
@@ -7,7 +8,10 @@ function HomePage() {
     // risers
     //fallers
     //etc
-    <div>Testing Shortcut</div>
+    <HomePageContainer>
+        HomePage
+    </HomePageContainer>
+
     
   )
 }
