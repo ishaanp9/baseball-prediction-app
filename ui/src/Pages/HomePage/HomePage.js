@@ -7,7 +7,7 @@ function HomePage() {
     // risers
     //fallers
     //etc
-    <div>Hello</div>
+    <div>Testing Shortcut</div>
     
   )
 }
