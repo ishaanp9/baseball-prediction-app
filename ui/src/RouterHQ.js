@@ -1,12 +1,13 @@
 import React from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import Header from './Models/Header/Header'
 import HomePage from './Pages/HomePage/HomePage'
 
 const RouterHQ = () => {
     return (
       <Router>
   
-        {/* <Header onClick={() => window.scrollTo(0,0)}/> */}
+        <Header onClick={() => window.scrollTo(0,0)}/>
   
         <Routes>
          <Route path="/" element={<HomePage/>}/>
