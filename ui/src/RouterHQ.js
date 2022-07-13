@@ -2,6 +2,7 @@ import React from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Header from './Models/Header/Header'
 import HomePage from './Pages/HomePage/HomePage'
+import PlayerPage from './Pages/PlayerPage/PlayerPage'
 
 const RouterHQ = () => {
     return (
@@ -11,8 +12,8 @@ const RouterHQ = () => {
   
         <Routes>
          <Route path="/" element={<HomePage/>}/>
-         {/* <Route path="/colleges/:collegeName" element={<CollegeHomePage/>}/>
-         <Route path="/about" element={<AboutPage/>}/>
+         <Route path="/player/:playerName" element={<PlayerPage/>}/>
+         {/* <Route path="/about" element={<AboutPage/>}/>
          <Route path="/blog" element={<BlogPage/>}/>
          <Route path="/faq" element={<FAQPage/>}/>
          <Route path="/add-college" element={<AddCollegePage/>}/>

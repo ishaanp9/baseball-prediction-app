@@ -94,7 +94,7 @@ def getPlayerStats(playerName):
 
        
 # Gets All General Player Information from a specific team
-@app.route('/get-player-on-team/<teamName>', methods=['GET', 'POST'])
+@app.route('/get-players-on-team/<teamName>', methods=['GET', 'POST'])
 def getPlayersForTeam(teamName):
     if(request.method == 'GET'):
         
