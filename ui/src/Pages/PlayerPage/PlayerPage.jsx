@@ -1,51 +1,45 @@
+import React from 'react';
+import { useParams } from 'react-router-dom';
+import PlayerInformationBanner from './components/PlayerInformationBanner/PlayerInformationBanner';
 import styled from 'styled-components';
+import PlayerStats from './components/PlayerStatsContainer/PlayerStats';
+import PlayerChart from './components/PlayerChart/PlayerChart';
 
-export const PlayerInformationBannerContainer = styled.div`
+const PlayerPageContainer = styled.div`
+  /* width: 100%;
+  height: 100%; */
   display: flex;
-  flex-direction: row;
-  background-color: black;
-  color: white;
-  display: flex;
-  margin: 5%;
-  border-radius: 16px;
-`;
-
-export const PlayerInfoContainer = styled.div`
-  display: flex;
+  padding: 5%;
   flex-direction: column;
 `;
 
-export const PlayerStockStatsContianer = styled.div`
+const PlayerPageChartStatRow = styled.div`
+  /* width: 100%;
+  height: 100%; */
   display: flex;
   flex-direction: row;
+  width: 100%;
 `;
 
-export const PlayerStockStatContianer = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
+function PlayerPage() {
+  let { playerName } = useParams();
 
-export const PlayerStockStatText = styled.p`
-  color: white;
-  font-size: 25px;
-`;
+  // I want all my api's to run here
 
-export const PlayerTeamPositionContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-`;
+  return (
+    <PlayerPageContainer>
+      <PlayerInformationBanner playerName={playerName} />
+      <PlayerPageChartStatRow>
+        <PlayerChart />
+        <PlayerStats />
+      </PlayerPageChartStatRow>
+    </PlayerPageContainer>
 
-export const PlayerName = styled.p`
-  color: white;
-  font-size: 25px;
-`;
+    //top playerInfo Component
+    //chart
+    //right side stats
+    //right side buy stock
+  );
+}
 
-export const PlayerTeam = styled.p`
-  color: white;
-  font-size: 25px;
-`;
-
-export const PlayerPosition = styled.p`
-  color: white;
-  font-size: 25px;
-`;
+export default PlayerPage;
