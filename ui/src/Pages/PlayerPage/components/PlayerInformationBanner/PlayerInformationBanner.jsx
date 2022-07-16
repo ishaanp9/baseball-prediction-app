@@ -9,7 +9,6 @@ const PlayerInformationBannerContainer = styled.div`
   background-color: #0B0E16;
   color: white;
   display: flex;
-  margin: 5%;
   padding: 1% 3%;
   border-radius: 16px;
   opacity: 95%;

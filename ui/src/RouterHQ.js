@@ -8,7 +8,7 @@ const RouterHQ = () => {
     return (
       <Router>
   
-        <Header onClick={() => window.scrollTo(0,0)}/>
+        {/* <Header onClick={() => window.scrollTo(0,0)}/> */}
   
         <Routes>
          <Route path="/" element={<HomePage/>}/>
