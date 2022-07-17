@@ -31,7 +31,7 @@ function PlayerPage() {
       <PlayerInformationBanner playerName={playerName} />
       <PlayerPageChartStatRow>
         <PlayerChart />
-        <PlayerStats />
+        <PlayerStats playerName={playerName} />
       </PlayerPageChartStatRow>
     </PlayerPageContainer>
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import styled from 'styled-components';
 
 const PlayerInformationBannerContainer = styled.div`
@@ -65,7 +65,7 @@ const PlayerStockStatsContianer = styled.div`
 const PlayerStockStatContianer = styled.div`
   display: flex;
   flex-direction: column;
-  margin-right: 30px;
+  margin-left: 30px;
 `;
 
 const PlayerStockStatText = styled.p`
@@ -88,31 +88,52 @@ const PlayerStockStat = ({ title, subtitle }) => {
 };
 
 export default function PlayerInformationBanner(props) {
-  let { playerName } = props;
+  const playerName  = props.playerName;
+  const [playerInformationObj, setPlayerInformationObj] = useState({});
+
+  useEffect(() => {
+    getPlayerInformation(playerName);
+  }, [])
+  
+
+  const getPlayerInformation = (playerName) => {
+    const requestOptions = {
+      method: 'GET',
+    };
+    fetch(`http://localhost:8080/get-player-information/${playerName}`, requestOptions)
+      .then(async (response) => {
+        let dataPromise = response.json();
+        let data = await dataPromise;
+        setPlayerInformationObj(data);
+      })
+      .catch((error) => {
+        console.log('There was an error!', error);
+      });
+  };
 
   return (
     //flex direction row
     <PlayerInformationBannerContainer>
       <PlayerImage
-        src={`https://img.mlbstatic.com/mlb-photos/image/upload/w_180,q_100/v1/people/664034/headshot/silo/current`}
+        src={`https://img.mlbstatic.com/mlb-photos/image/upload/w_180,q_100/v1/people/${playerInformationObj.id}/headshot/silo/current`}
         alt="new"
       />
       <RightPlayerBannerContainer>
         <PlayerInfoContainer>
           <PlayerName>{playerName}</PlayerName>
           <PlayerTeamPositionContainer>
-            <PlayerTeam>Seattle Mariners</PlayerTeam>
+            <PlayerTeam>{playerInformationObj.currentTeam}</PlayerTeam>
             <PlayerDivider>|</PlayerDivider>
-            <PlayerPosition>1B</PlayerPosition>
+            <PlayerPosition>{playerInformationObj.primaryPosition}</PlayerPosition>
           </PlayerTeamPositionContainer>
         </PlayerInfoContainer>
         <PlayerStockStatsContianer>
-          <PlayerStockStat title={'Age'} subtitle={28} />
-          <PlayerStockStat title={'Height'} subtitle={"6'4"} />
-          <PlayerStockStat title={'Weight'} subtitle={198} />
-          <PlayerStockStat title={'Birth Country'} subtitle={'Seattle'} />
-          <PlayerStockStat title={'Bat Side'} subtitle={'Left'} />
-          <PlayerStockStat title={'Pitch Hand'} subtitle={'Left'} />
+          <PlayerStockStat title={"Age"} subtitle={playerInformationObj.currentAge} />
+          <PlayerStockStat title={'Height'} subtitle={playerInformationObj.height} />
+          <PlayerStockStat title={'Weight'} subtitle={playerInformationObj.weight} />
+          <PlayerStockStat title={'Birth Country'} subtitle={playerInformationObj.birthCountry} />
+          <PlayerStockStat title={'Bat Side'} subtitle={playerInformationObj.batSide} />
+          <PlayerStockStat title={'Pitch Hand'} subtitle={playerInformationObj.pitchHand} />
         </PlayerStockStatsContianer>
       </RightPlayerBannerContainer>
     </PlayerInformationBannerContainer>

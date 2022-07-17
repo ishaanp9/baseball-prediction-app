@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import styled from 'styled-components';
 
 
@@ -49,19 +49,45 @@ const PlayerStatContainer = ({statName, statValue}) => {
     )
 }
 
-function PlayerStats() {
+function PlayerStats(props) {
+
+  const playerName = props.playerName;
+
+  const [playerStateObj, setPlayerStatObj] = useState({});
+
+  useEffect(() => {
+    getPlayerStats(playerName);
+  }, [])
+  
+
+  const getPlayerStats = (playerName) => {
+    const requestOptions = {
+      method: 'GET',
+    };
+    fetch(`http://localhost:8080/get-player-stats/${playerName}`, requestOptions)
+      .then(async (response) => {
+        let dataPromise = response.json();
+        let data = await dataPromise;
+        setPlayerStatObj(data);
+       
+      })
+      .catch((error) => {
+        console.log('There was an error!', error);
+      });
+  };
+
   return (
     <PlayerStatsContainer>
       <div>Player Stats</div>
       {/* divider?? */}
-      <PlayerStatContainer statName={"Batting Average: "} statValue={.304}/>
-      <PlayerStatContainer statName={"Home Runs: "} statValue={10}/>
-      <PlayerStatContainer statName={"RBI: "} statValue={55}/>
-      <PlayerStatContainer statName={"OBP: "} statValue={.400}/>
-      <PlayerStatContainer statName={"SLG: "} statValue={.454}/>
-      <PlayerStatContainer statName={"OPS: "} statValue={.854}/>
-      <PlayerStatContainer statName={"Games Played: "} statValue={78}/>
-      <PlayerStatContainer statName={"At Bats: "} statValue={276}/>
+      <PlayerStatContainer statName={"Batting Average: "} statValue={playerStateObj.avg}/>
+      <PlayerStatContainer statName={"Home Runs: "} statValue={playerStateObj.homeRuns}/>
+      <PlayerStatContainer statName={"RBI: "} statValue={playerStateObj.rbi}/>
+      <PlayerStatContainer statName={"OBP: "} statValue={playerStateObj.obp}/>
+      <PlayerStatContainer statName={"SLG: "} statValue={playerStateObj.slg}/>
+      <PlayerStatContainer statName={"OPS: "} statValue={playerStateObj.ops}/>
+      <PlayerStatContainer statName={"Games Played: "} statValue={playerStateObj.gamesPlayed}/>
+      <PlayerStatContainer statName={"At Bats: "} statValue={playerStateObj.atBats}/>
       
       <PlayerStatButton type='button'>
         More Stats
