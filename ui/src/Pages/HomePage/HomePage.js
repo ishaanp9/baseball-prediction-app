@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { HomePageContainer } from './HomePage.jsx';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
@@ -13,7 +13,7 @@ function HomePage() {
 
   const [playerInformationObj, setPlayerInformationObj] = useState({});
 
-  useEffectOnce(() => {
+  useEffect(() => {
     getAllPLayers();
   }, [])
   
