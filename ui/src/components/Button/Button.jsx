@@ -9,3 +9,13 @@ export const ButtonFilled = styled.button`
     font-size: 16px;
     cursor: pointer;
 `;
+
+export const LargeButtonFilled = styled.button`
+    width: 100%;
+    background-color: white;
+    color: black;
+    height: 40px;
+    margin-top: 10px;
+    border-radius: 10px;
+    font-size: 15px;
+`
