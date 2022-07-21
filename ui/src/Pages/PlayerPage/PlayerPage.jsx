@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { useParams } from 'react-router-dom';
 import PlayerInformationBanner from './components/PlayerInformationBanner/PlayerInformationBanner';
 import styled from 'styled-components';
@@ -31,7 +31,7 @@ function PlayerPage() {
       <PlayerInformationBanner playerName={playerName} />
       <PlayerPageChartStatRow>
         <PlayerChart />
-        <PlayerStats playerName={playerName} />
+        <PlayerStats playerName={playerName}/>
       </PlayerPageChartStatRow>
     </PlayerPageContainer>
 
