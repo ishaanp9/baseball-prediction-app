@@ -1,22 +1,18 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { HomePageContainer } from './HomePage.jsx';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
-import useEffectOnce from '../../Hook/useEffectOnce.jsx';
-import { useNavigate } from "react-router-dom";
-
+import { useNavigate } from 'react-router-dom';
 
 function HomePage() {
-
   const navigate = useNavigate();
 
   const [playerInformationObj, setPlayerInformationObj] = useState({});
 
   useEffect(() => {
     getAllPLayers();
-  }, [])
-  
+  }, []);
 
   const getAllPLayers = () => {
     const requestOptions = {
@@ -53,6 +49,7 @@ function HomePage() {
             component="li"
             sx={{ '& > img': { mr: 2, flexShrink: 0 } }}
             {...props}
+            key={option.id}
           >
             <img
               loading="lazy"
@@ -61,13 +58,15 @@ function HomePage() {
               srcSet={`https://img.mlbstatic.com/mlb-photos/image/upload/w_180,q_100/v1/people/${option.id}/headshot/silo/current`}
               alt=""
             />
-            {option.fullName} 
+              {option.fullName}
           </Box>
         )}
         onChange={(e) => {
           const element = e.target;
           const value = element.innerHTML;
-          navigate(`./player/${value.substring(value.lastIndexOf(">") + 1)}`);
+          let splitValues = value.split('/')
+          let pId = splitValues[9];
+          navigate(`./player/${pId}/${value.substring(value.lastIndexOf('>') + 1)}`);
           value = '';
         }}
         noOptionsText={<p>No MLB Player</p>}
@@ -77,7 +76,7 @@ function HomePage() {
             label="Pick a Player"
             inputProps={{
               ...params.inputProps,
-              autoComplete: "off", // disable autocomplete and autofill
+              autoComplete: 'off', // disable autocomplete and autofill
             }}
           />
         )}
@@ -85,6 +84,5 @@ function HomePage() {
     </HomePageContainer>
   );
 }
-
 
 export default HomePage;

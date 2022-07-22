@@ -44,18 +44,17 @@ CORS(app)
 # Route for fetching all mlb players
 
 
-@app.route('/get-player-information/<playerName>', methods=['GET', 'POST'])
-def getSpecificPlayerInformation(playerName):
+@app.route('/get-player-information/<playerId>', methods=['GET', 'POST'])
+def getSpecificPlayerInformation(playerId):
     if(request.method == 'GET'):
-        print(playerName)
         # # we can define the database and the collection here
         data = {
             "database": databaseName,
             "collection": playerInformation,
         }
-
+ 
         # # we can also pass in data
-        myQuery = {"fullName": playerName}
+        myQuery = {"id": int(playerId)}
 
         # # # this is how u do it
         mongo_obj = MongoAPI(data)
@@ -80,8 +79,8 @@ def getAllPlayers():
 # Gets player stats for each player
 
 
-@app.route('/get-player-stats/<playerName>', methods=['GET', 'POST'])
-def getPlayerStats(playerName):
+@app.route('/get-player-stats/<playerId>', methods=['GET', 'POST'])
+def getPlayerStats(playerId):
     if (request.method == 'GET'):
 
         playerData = {
@@ -89,11 +88,11 @@ def getPlayerStats(playerName):
             "collection": playerStats,
         }
 
-        id = statsapi.lookup_player(playerName)[0]["id"]
-        myQuery = {"id": id}
+        myQuery = {"id": int(playerId)}
 
         mongo_obj = MongoAPI(playerData)
         playerStatsObj = json.loads(mongo_obj.readQuery(myQuery))
+        print(playerStatsObj)
         requestedPlayerStat = None
         position = playerStatsObj[0]["position"]
         print(position)

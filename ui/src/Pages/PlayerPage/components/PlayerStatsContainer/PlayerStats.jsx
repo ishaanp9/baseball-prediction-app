@@ -46,20 +46,20 @@ const PlayerStatContainer = ({ statName, statValue }) => {
 };
 
 function PlayerStats(props) {
-  const playerName = props.playerName;
+  const playerId = props.playerId;
 
   const [playerStateObj, setPlayerStatObj] = useState({});
 
   useEffect(() => {
-    getPlayerStats(playerName);
+    getPlayerStats(playerId);
   }, []);
 
-  const getPlayerStats = (playerName) => {
+  const getPlayerStats = (playerId) => {
     const requestOptions = {
       method: 'GET',
     };
     fetch(
-      `http://localhost:8080/get-player-stats/${playerName}`,
+      `http://localhost:8080/get-player-stats/${playerId}`,
       requestOptions
     )
       .then(async (response) => {
