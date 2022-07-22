@@ -41,7 +41,7 @@ function PlayerPage() {
         <PlayerChart />
         <RightPlayerStatColumn>
           <PlayerStats playerName={playerName} playerId={playerId}/>
-          <BuyStock />
+          <BuyStock playerName={playerName}/>
         </RightPlayerStatColumn>
       </PlayerPageChartStatRow>
     </PlayerPageContainer>

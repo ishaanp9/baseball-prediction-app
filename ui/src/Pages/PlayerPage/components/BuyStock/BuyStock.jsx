@@ -31,17 +31,23 @@ const BuyStockButton = styled.button`
   margin-top: 10px;
   border-radius: 10px;
   font-size: 15px;
+  cursor: pointer;
 `;
 
-function BuyStock() {
+function BuyStock(props) {
+
+  const playerName = props.playerName;
+  
   return (
     <BuyStockContainer>
-      <BuyStockTitleText>Invest in Ty France</BuyStockTitleText>
+      <BuyStockTitleText>Invest in {playerName}</BuyStockTitleText>
       <BuyStockDivider />
-      <BuyStockTitleText>Order Type:</BuyStockTitleText>
+      <BuyStockTitleText>Order Type:  {'      '} Market Order</BuyStockTitleText>
+      {/* Shares or pure cash */}
       <BuyStockTitleText>Invest In:</BuyStockTitleText>
       <BuyStockTitleText>Amount:</BuyStockTitleText>
       <BuyStockDivider />
+      {/* Shares : 10 ($80) */}
       <BuyStockTitleText>Est Quantity:</BuyStockTitleText>
       {/* <BuyStockButton type="button">Sign up to Buy</BuyStockButton> */}
       <BuyStockButton type="button">Buy</BuyStockButton>
