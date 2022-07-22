@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { useParams } from 'react-router-dom';
 import PlayerInformationBanner from './components/PlayerInformationBanner/PlayerInformationBanner';
 import styled from 'styled-components';
@@ -30,16 +30,17 @@ const RightPlayerStatColumn = styled.div`
 
 function PlayerPage() {
   let { playerName } = useParams();
+  let {playerId} = useParams();
 
   // I want all my api's to run here
 
   return (
     <PlayerPageContainer>
-      <PlayerInformationBanner playerName={playerName} />
+      <PlayerInformationBanner playerName={playerName} playerId={playerId} />
       <PlayerPageChartStatRow>
         <PlayerChart />
         <RightPlayerStatColumn>
-          <PlayerStats />
+          <PlayerStats playerName={playerName} playerId={playerId}/>
           <BuyStock />
         </RightPlayerStatColumn>
       </PlayerPageChartStatRow>
