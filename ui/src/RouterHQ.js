@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Header from './Models/Header/Header'
 import HomePage from './Pages/HomePage/HomePage'
 import PlayerPage from './Pages/PlayerPage/PlayerPage'
+import PortfolioPage from './Pages/PortfolioPage/PortfolioPage'
 import TeamPage from './Pages/TeamPage/TeamPage'
 
 const RouterHQ = () => {
@@ -15,6 +16,7 @@ const RouterHQ = () => {
          <Route path="/" element={<HomePage/>}/>
          <Route path="/player/:playerId/:playerName" element={<PlayerPage/>}/>
          <Route path="/team/:teamName" element={<TeamPage/>}/>
+         <Route path="/portfolio" element={<PortfolioPage/>}/>
          {/* <Route path="/about" element={<AboutPage/>}/>
          <Route path="/blog" element={<BlogPage/>}/>
          <Route path="/faq" element={<FAQPage/>}/>
