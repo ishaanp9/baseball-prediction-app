@@ -4,6 +4,7 @@ import PlayerInformationBanner from './components/PlayerInformationBanner/Player
 import styled from 'styled-components';
 import PlayerStats from './components/PlayerStatsContainer/PlayerStats';
 import PlayerChart from './components/PlayerChart/PlayerChart';
+import BuyStock from './components/BuyStock/BuyStock';
 
 const PlayerPageContainer = styled.div`
   /* width: 100%;
@@ -21,6 +22,12 @@ const PlayerPageChartStatRow = styled.div`
   width: 100%;
 `;
 
+const RightPlayerStatColumn = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 25%;
+`
+
 function PlayerPage() {
   let { playerName } = useParams();
   let {playerId} = useParams();
@@ -32,7 +39,10 @@ function PlayerPage() {
       <PlayerInformationBanner playerName={playerName} playerId={playerId} />
       <PlayerPageChartStatRow>
         <PlayerChart />
-        <PlayerStats playerName={playerName} playerId={playerId}/>
+        <RightPlayerStatColumn>
+          <PlayerStats playerName={playerName} playerId={playerId}/>
+          <BuyStock />
+        </RightPlayerStatColumn>
       </PlayerPageChartStatRow>
     </PlayerPageContainer>
 

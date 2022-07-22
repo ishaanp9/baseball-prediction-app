@@ -3,7 +3,6 @@ import styled from 'styled-components';
 
 const PlayerStatsContainer = styled.div`
   margin-top: 20px;
-  width: 25%;
   display: flex;
   flex-direction: column;
   /* align-items: center; */
@@ -11,7 +10,7 @@ const PlayerStatsContainer = styled.div`
   background-color: #0b0e16;
   color: white;
   display: flex;
-  padding: 1% 3%;
+  padding: 3%;
   border-radius: 16px;
   opacity: 95%;
 `;
