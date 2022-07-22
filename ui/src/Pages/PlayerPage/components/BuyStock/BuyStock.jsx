@@ -43,7 +43,9 @@ function BuyStock() {
       <BuyStockTitleText>Amount:</BuyStockTitleText>
       <BuyStockDivider />
       <BuyStockTitleText>Est Quantity:</BuyStockTitleText>
-      <BuyStockButton type="button">Sign up to Buy</BuyStockButton>
+      {/* <BuyStockButton type="button">Sign up to Buy</BuyStockButton> */}
+      <BuyStockButton type="button">Buy</BuyStockButton>
+      {/* should make a confirm model */}
     </BuyStockContainer>
   );
 }
