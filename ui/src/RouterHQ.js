@@ -13,7 +13,7 @@ const RouterHQ = () => {
   
         <Routes>
          <Route path="/" element={<HomePage/>}/>
-         <Route path="/player/:playerName" element={<PlayerPage/>}/>
+         <Route path="/player/:playerId/:playerName" element={<PlayerPage/>}/>
          <Route path="/team/:teamName" element={<TeamPage/>}/>
          {/* <Route path="/about" element={<AboutPage/>}/>
          <Route path="/blog" element={<BlogPage/>}/>

@@ -89,18 +89,19 @@ const PlayerStockStat = ({ title, subtitle }) => {
 
 export default function PlayerInformationBanner(props) {
   const playerName  = props.playerName;
+  const playerId = props.playerId;
   const [playerInformationObj, setPlayerInformationObj] = useState({});
 
   useEffect(() => {
-    getPlayerInformation(playerName);
+    getPlayerInformation(playerId);
   }, [])
   
 
-  const getPlayerInformation = (playerName) => {
+  const getPlayerInformation = (playerId) => {
     const requestOptions = {
       method: 'GET',
     };
-    fetch(`http://localhost:8080/get-player-information/${playerName}`, requestOptions)
+    fetch(`http://localhost:8080/get-player-information/${playerId}`, requestOptions)
       .then(async (response) => {
         let dataPromise = response.json();
         let data = await dataPromise;
@@ -115,7 +116,7 @@ export default function PlayerInformationBanner(props) {
     //flex direction row
     <PlayerInformationBannerContainer>
       <PlayerImage
-        src={`https://img.mlbstatic.com/mlb-photos/image/upload/w_180,q_100/v1/people/${playerInformationObj.id}/headshot/silo/current`}
+        src={`https://img.mlbstatic.com/mlb-photos/image/upload/w_180,q_100/v1/people/${playerId}/headshot/silo/current`}
         alt="new"
       />
       <RightPlayerBannerContainer>

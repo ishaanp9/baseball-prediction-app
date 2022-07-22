@@ -23,15 +23,16 @@ const PlayerPageChartStatRow = styled.div`
 
 function PlayerPage() {
   let { playerName } = useParams();
+  let {playerId} = useParams();
 
   // I want all my api's to run here
 
   return (
     <PlayerPageContainer>
-      <PlayerInformationBanner playerName={playerName} />
+      <PlayerInformationBanner playerName={playerName} playerId={playerId} />
       <PlayerPageChartStatRow>
         <PlayerChart />
-        <PlayerStats playerName={playerName}/>
+        <PlayerStats playerName={playerName} playerId={playerId}/>
       </PlayerPageChartStatRow>
     </PlayerPageContainer>
 
