@@ -1,5 +1,6 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled from 'styled-components';
+import ConfirmDialog from '../../../../components/Modals/Modals';
 
 const BuyStockContainer = styled.div`
   margin-top: 20px;
@@ -37,7 +38,9 @@ const BuyStockButton = styled.button`
 function BuyStock(props) {
 
   const playerName = props.playerName;
-  
+  const [showModal, setShowModal] = useState(false);
+  console.log(showModal);
+
   return (
     <BuyStockContainer>
       <BuyStockTitleText>Invest in {playerName}</BuyStockTitleText>
@@ -50,7 +53,8 @@ function BuyStock(props) {
       {/* Shares : 10 ($80) */}
       <BuyStockTitleText>Est Quantity:</BuyStockTitleText>
       {/* <BuyStockButton type="button">Sign up to Buy</BuyStockButton> */}
-      <BuyStockButton type="button">Buy</BuyStockButton>
+      <BuyStockButton type="button" onClick={() => setShowModal(true)}>Buy</BuyStockButton>
+      {showModal ? <ConfirmDialog open={(isOpen) => setShowModal(isOpen)} state={showModal} estQuantity={"Shares: 10 ($80)"} playerName={playerName}/> : null}
       {/* should make a confirm model */}
     </BuyStockContainer>
   );
