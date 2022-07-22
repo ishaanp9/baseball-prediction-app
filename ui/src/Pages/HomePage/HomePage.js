@@ -3,16 +3,23 @@ import { HomePageContainer } from './HomePage.jsx';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
+import { createFilterOptions } from '@mui/material/Autocomplete';
 import { useNavigate } from 'react-router-dom';
 
 function HomePage() {
   const navigate = useNavigate();
 
-  const [playerInformationObj, setPlayerInformationObj] = useState({});
+  //currently an array because autocomplete takes array not obj (may need to change later)
+  const [playerInformationObj, setPlayerInformationObj] = useState([]);
 
   useEffect(() => {
     getAllPLayers();
   }, []);
+
+  //limit to autocomplete
+  const filterOptions = createFilterOptions({
+    limit: 10,
+  });
 
   const getAllPLayers = () => {
     const requestOptions = {
@@ -39,10 +46,11 @@ function HomePage() {
       <Autocomplete
         id="player-select"
         freeSolo
+        filterOptions={filterOptions}
         sx={{ width: 800 }}
         options={playerInformationObj}
         autoHighlight
-        aut
+        loading='true'
         getOptionLabel={(option) => option.fullName}
         renderOption={(props, option) => (
           <Box
@@ -58,15 +66,17 @@ function HomePage() {
               srcSet={`https://img.mlbstatic.com/mlb-photos/image/upload/w_180,q_100/v1/people/${option.id}/headshot/silo/current`}
               alt=""
             />
-              {option.fullName}
+            {option.fullName}
           </Box>
         )}
         onChange={(e) => {
           const element = e.target;
           const value = element.innerHTML;
-          let splitValues = value.split('/')
+          let splitValues = value.split('/');
           let pId = splitValues[9];
-          navigate(`./player/${pId}/${value.substring(value.lastIndexOf('>') + 1)}`);
+          navigate(
+            `./player/${pId}/${value.substring(value.lastIndexOf('>') + 1)}`
+          );
         }}
         noOptionsText={<p>No MLB Player</p>}
         renderInput={(params) => (
