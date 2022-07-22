@@ -104,7 +104,7 @@ function PlayerStats(props) {
           />
           <PlayerStatContainer
             statName={'Innings Picthes: '}
-            statValue={playerStateObj.inningsPicthed}
+            statValue={playerStateObj.inningsPitched}
           />
           <PlayerStatContainer
             statName={'Strikeouts: '}

@@ -67,7 +67,6 @@ function HomePage() {
           let splitValues = value.split('/')
           let pId = splitValues[9];
           navigate(`./player/${pId}/${value.substring(value.lastIndexOf('>') + 1)}`);
-          value = '';
         }}
         noOptionsText={<p>No MLB Player</p>}
         renderInput={(params) => (
