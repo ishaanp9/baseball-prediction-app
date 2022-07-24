@@ -52,7 +52,7 @@ def getSpecificPlayerInformation(playerId):
             "database": databaseName,
             "collection": playerInformation,
         }
- 
+
         # # we can also pass in data
         myQuery = {"id": int(playerId)}
 
@@ -72,8 +72,7 @@ def getAllPlayers():
         response_API = requests.get(
             'https://statsapi.mlb.com/api/v1/sports/1/players')
     data = response_API.json()
-    
-   
+
     return json.dumps(data["people"])
 
 # Gets player stats for each player
@@ -153,6 +152,45 @@ def getPlayersForTeam(teamName):
 
         # return "Hello"
         return jsonify(playerObjArr)
+
+
+@app.route('/buy-order', methods=['GET', 'POST'])
+def sendBuyOrderToDB():
+    if(request.method == 'POST'):
+
+        db_col = {
+            "database": databaseName,
+            "collection": boughtStocks,
+        }
+
+        mongo_obj = MongoAPI(db_col)
+        playerInformation_obj = mongo_obj.write(request.json)
+
+        print(playerInformation_obj)
+        return "success"
+
+
+@app.route('/get-bought-stocks/<uid>', methods=['GET', 'POST'])
+def getBuyOrdersForUser(uid):
+    if(request.method == 'GET'):
+
+        print("In the method")
+        print(uid)
+
+        db_col = {
+            "database": databaseName,
+            "collection": boughtStocks,
+        }
+
+        myQuery = {"uid": int(uid)}
+
+        mongo_obj = MongoAPI(db_col)
+
+        # NOTE: MAY AFFECT SPEED OF QUERY MAY NEED TO FIGURE OUT A SMARTER WAY
+        queryFilter = {'playerId', 'numShares', 'valueBoughtAt', 'totalValue'}
+        userBoughtStocks = json.loads(mongo_obj.readQueryWithFilter(myQuery, queryFilter))
+
+        return jsonify(userBoughtStocks)
 
 
 # defines the port 8080 as to not intefere with port 5000 which mongo runs on
