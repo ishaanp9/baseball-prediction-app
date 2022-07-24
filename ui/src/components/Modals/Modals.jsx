@@ -10,9 +10,36 @@ export default function ConfirmDialog(props) {
   
   let isOpen = props.state;
 
+  
+
+  const sendBuyOrderToDB = () => {
+    const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({'uid' : 1234567, 'playerId': 674564, 'numShares': 7, 'valueBoughtAt': 30, 'totalValue': 210})
+    };
+    fetch(`http://localhost:8080/buy-order`, requestOptions)
+      .then(async (response) => {
+        let dataPromise = response.json();
+        let data = await dataPromise;
+        console.log(data);
+      })
+      .catch((error) => {
+        console.log(requestOptions);
+        console.log('There was an error!', error);
+      });
+  };
+
   const handleClose = () => {
     props.open(false);
   };
+
+  const handleAgree = () => {
+    props.open(false);
+    sendBuyOrderToDB();
+    // send to database
+    //open confirm modal
+  }
 
   return (
     <div>
@@ -32,7 +59,8 @@ export default function ConfirmDialog(props) {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Disagree</Button>
-          <Button onClick={handleClose} autoFocus>
+          {/* send to database */}
+          <Button onClick={handleAgree} autoFocus>
             Agree
           </Button>
         </DialogActions>
