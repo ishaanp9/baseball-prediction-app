@@ -42,9 +42,7 @@ class MongoAPI:
 
     #read all from certain collection
     def readQuery(self, myQuery):
-        print(myQuery)
         document = self.collection.find(myQuery)
-        print(document)
         return dumps(document)
 
     def readQueryWithFilter(self, myQuery, queryFilter):

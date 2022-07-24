@@ -73,6 +73,7 @@ def getAllPlayers():
             'https://statsapi.mlb.com/api/v1/sports/1/players')
     data = response_API.json()
 
+    
     return json.dumps(data["people"])
 
 # Gets player stats for each player
