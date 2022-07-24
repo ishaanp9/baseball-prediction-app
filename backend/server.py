@@ -91,10 +91,8 @@ def getPlayerStats(playerId):
 
         mongo_obj = MongoAPI(playerData)
         playerStatsObj = json.loads(mongo_obj.readQuery(myQuery))
-        print(playerStatsObj)
         requestedPlayerStat = None
         position = playerStatsObj[0]["position"]
-        print(position)
         for statObj in playerStatsObj[0]["stats"]:
             if (position == 'P' and statObj["group"] == 'pitching'):
                 requestedPlayerStat = statObj["stats"]
@@ -166,7 +164,6 @@ def sendBuyOrderToDB():
         mongo_obj = MongoAPI(db_col)
         playerInformation_obj = mongo_obj.write(request.json)
 
-        print(playerInformation_obj)
         return "success"
 
 

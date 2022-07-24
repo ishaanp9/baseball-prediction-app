@@ -27,7 +27,6 @@ class MongoAPI:
     #inserting many documnets in to mongodb database
     def writeMany(self, data):
         new_document = data['document']
-        print(type(new_document))
         response = self.collection.insert_many(new_document)
         # output = {'Status': 'Successfully Inserted',
         #           'Document_ID': str(response.inserted_id)}
@@ -42,9 +41,7 @@ class MongoAPI:
 
     #read all from certain collection
     def readQuery(self, myQuery):
-        print(myQuery)
         document = self.collection.find(myQuery)
-        print(document)
         return dumps(document)
 
     def readQueryWithFilter(self, myQuery, queryFilter):
