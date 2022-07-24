@@ -6,4 +6,3 @@ databaseName = "baseball-preformance-game"
 playerInformation = "player_information"
 playerStats = "player_stats"
 mlbTeams = "mlb_teams"
-boughtStocks = 'bought_stocks'
