@@ -20,10 +20,8 @@ class MongoAPI:
     # inserting one document to mongodb
     def write(self, data):
         print(data)
-        new_document = data['document']
-        response = self.collection.insert_one(new_document)
-        output = {'Status': 'Successfully Inserted',
-                  'Document_ID': str(response.inserted_id)}
+        response = self.collection.insert_one(data)
+        output = {'Status': 'Successfully Inserted'}
         return output
 
     #inserting many documnets in to mongodb database
@@ -44,8 +42,9 @@ class MongoAPI:
 
     #read all from certain collection
     def readQuery(self, myQuery):
+        print(myQuery)
         document = self.collection.find(myQuery)
-        # print(myQuery)
+        print(document)
         return dumps(document)
 
     def readQueryWithFilter(self, myQuery, queryFilter):
