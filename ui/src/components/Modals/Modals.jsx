@@ -9,14 +9,14 @@ import DialogTitle from '@mui/material/DialogTitle';
 export default function ConfirmDialog(props) {
   
   let isOpen = props.state;
-
+  let today = new Date().toLocaleString('en-US', { timeZone: 'PST' });
   
 
   const sendBuyOrderToDB = () => {
     const requestOptions = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({'uid' : 1234567, 'playerId': 674564, 'numShares': 7, 'valueBoughtAt': 30, 'totalValue': 210})
+      body: JSON.stringify({'uid' : 1234567, 'playerName': 'Aaron Judge', 'playerId': 674564, 'numShares': 7, 'valueBoughtAt': 30, 'totalValue': 210, 'timeBought': today})
     };
     fetch(`http://localhost:8080/buy-order`, requestOptions)
       .then(async (response) => {

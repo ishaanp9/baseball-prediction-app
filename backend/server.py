@@ -27,7 +27,7 @@ CORS(app)
 #         print(player["id"])
 
 
-# print(statsapi.player_stat_data(data["people"][0]["id"], group="[hitting,pitching,fielding]", type="season"))
+# print(statsapi.player_stat_data(data["people"][0]["id"], group    ="[hitting,pitching,fielding]", type="season"))
 
 # team = statsapi.lookup_team('chn')
 # print(team) #assume only 1 record returned for demo purposes
@@ -184,7 +184,7 @@ def getBuyOrdersForUser(uid):
         mongo_obj = MongoAPI(db_col)
 
         # NOTE: MAY AFFECT SPEED OF QUERY MAY NEED TO FIGURE OUT A SMARTER WAY
-        queryFilter = {'playerId', 'numShares', 'valueBoughtAt', 'totalValue'}
+        queryFilter = {'playerName', 'playerId', 'numShares', 'valueBoughtAt', 'totalValue', 'timeBought'}
         userBoughtStocks = json.loads(mongo_obj.readQueryWithFilter(myQuery, queryFilter))
 
         return jsonify(userBoughtStocks)
