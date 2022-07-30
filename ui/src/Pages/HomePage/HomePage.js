@@ -5,6 +5,7 @@ import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import { createFilterOptions } from '@mui/material/Autocomplete';
 import { useNavigate } from 'react-router-dom';
+import Profile from '../../profile.js';
 
 function HomePage() {
   const navigate = useNavigate();
@@ -90,6 +91,7 @@ function HomePage() {
           />
         )}
       />
+      <Profile/>
     </HomePageContainer>
   );
 }
